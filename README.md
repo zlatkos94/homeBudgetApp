@@ -1,6 +1,6 @@
 # Symfony Home Budget App
 Symfony-based Expense Tracker API sa MySQL.
-## Get started
+## Get started with execute this in terminal
 ```bash
 git clone git@github.com:zlatkos94/homeBudgetApp.git
 cd homeBudgetApp
