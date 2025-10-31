@@ -1,0 +1,29 @@
+nelmio_api_doc:
+    documentation:
+        info:
+            title: "HomeBudget API"
+            description: "HomeBudget API"
+            version: 1.0.0
+
+        tags:
+            -   name: Login
+                description: "Endpoints for authentication"
+
+        components:
+            securitySchemes:
+                BearerAuth:
+                    type: http
+                    scheme: bearer
+                    bearerFormat: JWT
+
+        security:
+            - BearerAuth: []
+
+    areas:
+        path_patterns:
+            - ^/api
+
+    html_config:
+        swagger_ui_config:
+            displayRequestDuration: true
+            defaultModelsExpandDepth: 1

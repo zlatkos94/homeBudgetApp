@@ -1,0 +1,57 @@
+# config/packages/security.yaml
+security:
+    password_hashers:
+        App\Entity\User:
+            algorithm: auto
+
+    providers:
+        app_user_provider:
+            entity:
+                class: App\Entity\User
+                property: email
+
+    firewalls:
+        # Dev firewall (profiler, wdt, assets)
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        # Swagger / API docs firewall (anonimni pristup)
+        swagger:
+            pattern: ^/api/doc
+            security: false
+
+        # Login endpoint
+        login:
+            pattern: ^/api/login$
+            stateless: true
+            json_login:
+                check_path: /api/login
+                username_path: email
+                password_path: password
+                success_handler: lexik_jwt_authentication.handler.authentication_success
+                failure_handler: lexik_jwt_authentication.handler.authentication_failure
+
+        # Registration endpoint (anonimni pristup)
+        register:
+            pattern: ^/api/register$
+            stateless: true
+            security: false
+
+        # Glavni API firewall (zaštićen JWT-om)
+        api:
+            pattern: ^/api
+            stateless: true
+            provider: app_user_provider
+            jwt: ~
+
+    access_control:
+        # Omogućujemo anonimni pristup Swagger / docs
+        - { path: ^/api/doc, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/api/doc.json, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+
+        # Registracija anonimno
+        - { path: ^/api/register$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+
+        # Sve ostalo zahtijeva punu autentifikaciju
+        - { path: ^/api, roles: IS_AUTHENTICATED_FULLY }

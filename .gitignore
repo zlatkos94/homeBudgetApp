@@ -1,0 +1,15 @@
+###> phpunit/phpunit ###
+/phpunit.xml
+/.phpunit.cache/
+###< phpunit/phpunit ###
+
+/var/
+/vendor/
+/.idea/
+/composer.phar
+
+# zadrži env.local i env.test u repo-u
+# /env.local
+# /env.test
+
+/homeBudgetApp.iml
