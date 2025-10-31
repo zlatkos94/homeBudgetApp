@@ -15,8 +15,7 @@ docker exec -it symfony_php bash
 # Install PHP dependencies
 composer install
 
-# Reset the database
-php bin/console doctrine:database:drop --force
+# Create the database
 php bin/console doctrine:database:create
 
 # Run database migrations
