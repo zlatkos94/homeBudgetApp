@@ -23,8 +23,8 @@ class RegistrationController extends AbstractController
                 'application/json' => new OA\JsonContent(
                     required: ['email', 'password'],
                     properties: [
-                        new OA\Property(property: 'email', type: 'string', description: 'Email korisnika', example: 'test@example.com'),
-                        new OA\Property(property: 'password', type: 'string', description: 'Lozinka korisnika', example: 'lozinka123'),
+                        new OA\Property(property: 'email', type: 'string', description: 'Email', example: 'user@example.com'),
+                        new OA\Property(property: 'password', type: 'string', description: 'Password', example: 'password'),
                     ],
                     type: 'object'
                 )

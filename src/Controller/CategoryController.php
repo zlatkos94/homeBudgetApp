@@ -40,7 +40,6 @@ class CategoryController extends AbstractController
         ]
     )]
     #[Route('', name: 'category_list', methods: ['GET'])]
-    #[IsGranted('view')]
     public function list(): JsonResponse
     {
         $user = $this->getUser();
