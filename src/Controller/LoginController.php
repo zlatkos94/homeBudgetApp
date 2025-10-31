@@ -16,15 +16,15 @@ class LoginController extends AbstractController
 {
     #[OA\Post(
         path: '/api/login',
-        summary: 'Login korisnika i generiranje JWT tokena',
+        summary: 'Login user and generate jwt token',
         requestBody: new OA\RequestBody(
             required: true,
             content: [
                 'application/json' => new OA\JsonContent(
                     required: ['email', 'password'],
                     properties: [
-                        new OA\Property(property: 'email', type: 'string', description: 'Email korisnika', example: 'test@example.com'),
-                        new OA\Property(property: 'password', type: 'string', description: 'Lozinka korisnika', example: 'lozinka123'),
+                        new OA\Property(property: 'email', type: 'string', description: 'Email', example: 'test@example.com'),
+                        new OA\Property(property: 'password', type: 'string', description: 'Password', example: 'password'),
                     ],
                     type: 'object'
                 )

@@ -36,7 +36,12 @@ class MonthlyBudgetController extends AbstractController
     #[Route('', name: 'list', methods: ['GET'])]
     public function list(): JsonResponse
     {
-        $data = $this->repo->findAll();
+        /** @var User $user */
+        $user = $this->getUser();
+
+        $data = $this->repo->findBy([
+            'user' => $user
+        ]);
         return $this->json($data, 200, [], ['groups' => 'monthly_budget:read']);
     }
 
@@ -192,14 +197,10 @@ class MonthlyBudgetController extends AbstractController
             new OA\Response(response: 404, description: 'Budget not found')
         ]
     )]
+    #[IsGranted('view', subject: 'budget')]
     #[Route('/{id}', name: 'delete', methods: ['DELETE'])]
-    public function delete(int $id): JsonResponse
+    public function delete(MonthlyBudget $budget): JsonResponse
     {
-        $budget = $this->repo->find($id);
-        if (!$budget) {
-            return $this->json(['error' => 'Not found'], 404);
-        }
-
         $this->em->remove($budget);
         $this->em->flush();
 
