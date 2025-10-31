@@ -1,9 +1,10 @@
 # Symfony Home Budget App
 Symfony-based Expense Tracker API sa MySQL.
-## Get started with execute this in terminal
+
+## 🚀 Get Started
+Run the following commands in your terminal:
+
 ```bash
-git clone git@github.com:zlatkos94/homeBudgetApp.git
-cd homeBudgetApp
 docker-compose up -d --build
 docker exec -it symfony_php bash -c "\
     composer install && \
@@ -15,3 +16,6 @@ docker exec -it symfony_php bash -c "\
     openssl genrsa -out config/jwt/private.pem 4096 && \
     openssl rsa -pubout -in config/jwt/private.pem -out config/jwt/public.pem \
 "
+
+Once the app is running, open your browser at:
+👉 http://localhost:8080/api/doc
